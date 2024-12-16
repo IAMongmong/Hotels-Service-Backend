@@ -1,0 +1,15 @@
+{
+  "validHotel": {
+    "id": 1,
+    "name": "Test Hotel",
+    "address": "Test Dost., No. 268",
+    "email": "mail@example.com",
+    "webLink": "example.com",
+    "country": "Taiwan",
+    "city": "Yilan",
+    "longitude": 121.776,
+    "latitude": 24.671,
+    "is_open": true
+  },
+  "hotelNotFound": null
+}

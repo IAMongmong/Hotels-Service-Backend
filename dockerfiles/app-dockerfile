@@ -1,0 +1,24 @@
+# 使用官方 Node.js 基礎映像
+FROM node:18
+
+# 安裝 wait-for-it 腳本
+RUN curl -sS https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > /usr/local/bin/wait-for-it && \
+    chmod +x /usr/local/bin/wait-for-it
+
+# 設置工作目錄
+WORKDIR /app
+
+# 複製 package.json 和 package-lock.json
+COPY package*.json ./ 
+
+# 安裝依賴
+RUN npm install
+
+# 複製應用程式的所有檔案
+COPY . . 
+
+# 開放應用程式的端口 (假設你的應用使用 3000 端口)
+EXPOSE 3000
+
+# 在應用程式啟動前，使用 wait-for-it 等待 db 服務可用
+CMD ["wait-for-it", "db:3306", "--", "npm", "start"]
